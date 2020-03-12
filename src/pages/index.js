@@ -1,38 +1,42 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
-import Layout from '../components/layout'
+import React from "react"
+import { StaticQuery, graphql } from "gatsby"
 
-const IndexPage = ({ data }) => (
+import Layout from "../components/layout"
+import ArticlesComponent from "../components/articles"
+
+import "../assets/css/main.css"
+
+const IndexPage = () => (
   <Layout>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <ul>
-      {data.allStrapiArticle.edges.map(document => (
-        <li key={document.node.id}>
-          <h2>
-            <Link to={`/${document.node.id}`}>{document.node.title}</Link>
-          </h2>
-          <p>{document.node.content}</p>
-        </li>
-      ))}
-    </ul>
-    <Link to="/page-2/">Go to page 2</Link>
+    <StaticQuery
+      query={graphql`
+        query {
+          allStrapiArticle {
+            edges {
+              node {
+                strapiId
+                title
+                category {
+                  name
+                }
+                image {
+                  publicURL
+                }
+              }
+            }
+          }
+        }
+      `}
+      render={data => (
+        <div className="uk-section">
+          <div className="uk-container uk-container-large">
+            <h1>Strapi blog</h1>
+            <ArticlesComponent articles={data.allStrapiArticle.edges} />
+          </div>
+        </div>
+      )}
+    />
   </Layout>
 )
 
 export default IndexPage
-
-export const pageQuery = graphql`  
-  query IndexQuery {
-    allStrapiArticle {
-      edges {
-        node {
-          id
-          title
-          content
-        }
-      }
-    }
-  }
-`
