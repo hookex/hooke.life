@@ -24,6 +24,13 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
+        resumes: allStrapiResume {
+          edges {
+            node {
+              strapiId
+            }
+          }
+        }
       }
     `
   )
@@ -35,6 +42,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create blog articles pages.
   const articles = result.data.articles.edges
   const categories = result.data.categories.edges
+  const resumes = result.data.categories.edges
 
   articles.forEach((article, index) => {
     createPage({
@@ -52,6 +60,16 @@ exports.createPages = async ({ graphql, actions }) => {
       component: require.resolve("./src/templates/category.js"),
       context: {
         id: category.node.strapiId,
+      },
+    })
+  })
+
+  resumes.forEach((resume, index) => {
+    createPage({
+      path: `/resume/${resume.node.strapiId}`,
+      component: require.resolve("./src/templates/resume.js"),
+      context: {
+        id: resume.node.strapiId,
       },
     })
   })

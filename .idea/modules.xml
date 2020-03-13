@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/hooke.life.iml" filepath="$PROJECT_DIR$/.idea/hooke.life.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../hooke.life.admin/.idea/hooke.life.admin.iml" filepath="$PROJECT_DIR$/../hooke.life.admin/.idea/hooke.life.admin.iml" />
     </modules>
   </component>
 </project>
