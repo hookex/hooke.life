@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Seo />
-      <Nav />
+      {/*<Nav />*/}
       <main>{children}</main>
     </>
   )

@@ -1,10 +1,10 @@
 import React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
 
 import Layout from "../components/layout"
 import ArticlesComponent from "../components/articles"
 
-import "../assets/css/main.css"
+import "../assets/css/main.scss"
 
 const IndexPage = () => (
   <Layout>
@@ -28,11 +28,11 @@ const IndexPage = () => (
         }
       `}
       render={data => (
-        <div className="uk-section">
-          <div className="uk-container uk-container-large">
-            <h1>Hooke</h1>
-            <ArticlesComponent articles={data.allStrapiArticle.edges} />
+        <div className="container">
+          <div id='banner'>
+            <h2 className='title'>Hooke</h2>
           </div>
+          <ArticlesComponent articles={data.allStrapiArticle.edges}/>
         </div>
       )}
     />
